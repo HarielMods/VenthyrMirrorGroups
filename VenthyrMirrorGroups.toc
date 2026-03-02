@@ -6,6 +6,6 @@
 ## Notes: Mark the Venthyr mirrors on your map using TomTom. Requires the TomTom add on.
 ## X-Curse-Project-ID: 1476084
 ## X-WoWI-ID: 
-## X-Wago-ID: 
+## X-Wago-ID: 56ndwAG9
 
 MirrorGroups.lua
