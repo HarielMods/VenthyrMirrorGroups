@@ -1,0 +1,11 @@
+## Interface: 120001
+## Title: Venthyr Mirror Groups
+## Author: Hariel
+## Version: 1.0.0
+## License: All Rights Reserved
+## Notes: Mark the Venthyr mirrors on your map using TomTom. Requires the TomTom add on.
+## X-Curse-Project-ID: 1476084
+## X-WoWI-ID: 
+## X-Wago-ID: 
+
+MirrorGroups.lua
