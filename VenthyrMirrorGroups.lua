@@ -2,7 +2,7 @@ local ADDON_NAME, ns = ...
 
 local frame = CreateFrame("Frame")
 local Print = function(msg)
-    DEFAULT_CHAT_FRAME:AddMessage("|cFF33FF99MirrorGroups:|r " .. msg)
+    DEFAULT_CHAT_FRAME:AddMessage("|cFF33FF99VenthyrMirrorGroups:|r " .. msg)
 end
 
 
