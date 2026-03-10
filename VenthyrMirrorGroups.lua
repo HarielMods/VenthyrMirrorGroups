@@ -5,7 +5,6 @@ local Print = function(msg)
     DEFAULT_CHAT_FRAME:AddMessage("|cFF33FF99VenthyrMirrorGroups:|r " .. msg)
 end
 
-
 local RevendrethZoneID = "#1525"
 local data = {
     ["Group1"] = {
@@ -50,10 +49,27 @@ local function FindActiveMirrorGroup()
         WorldQuestAdded = C_QuestLog.AddWorldQuestWatch(n) 
         WorldQuestCompleted = C_QuestLog.IsQuestFlaggedCompleted(n) 
         if WorldQuestAdded or WorldQuestCompleted then 
-            Print("\124cff00FE00Mirror Group " .. g .. " active\124r") 
             ActiveMirrorGroup = g
-            MarkMap("Group" .. g)
+            Print("\124cff00FE00Mirror Group " .. g .. " active\124r")
+            return ActiveMirrorGroup
         end 
+    end
+end
+
+local function FindAndMarkActiveMirrorGroup()
+    local activeMirrorGroup = FindActiveMirrorGroup()
+    MarkMap("Group" .. activeMirrorGroup)
+    if not ActiveMirrorGroup then
+        Print("No active mirror group found. Use /vmg [1-4] to mark a specific group or /vmg all to mark all groups.")
+    end
+end
+
+-- Event Functions
+
+local function OnZoneChange()
+    local currentZoneID = C_Map.GetBestMapForUnit("player")
+    if currentZoneID == 1525 then -- Revendreth Zone ID
+        FindAndMarkActiveMirrorGroup()
     end
 end
 
@@ -66,15 +82,14 @@ local function SlashHandler(msg)
     
     local cmd = args[1] and args[1]:lower() or ""
 
-    if cmd ~= "" then
+    if cmd == "1" or cmd == "2" or cmd == "3" or cmd == "4" then
         MarkMap("Group" .. cmd)
-    elseif cmd == "help" then
-        Print("Usage: /mg [group number]")
-        Print("Example: /mg 1 - Marks locations for Group 1")
-    elseif cmd == "check" then
-        FindActiveMirrorGroup()
+    elseif cmd == "all" then
+        for i = 1, 4 do
+            MarkMap("Group" .. i)
+        end
     else
-        FindActiveMirrorGroup()
+        FindAndMarkActiveMirrorGroup()
     end
 end
 
@@ -85,12 +100,16 @@ local function OnEvent(self, event, arg1)
         SLASH_VMG1 = "/vmg"
         SlashCmdList["VMG"] = SlashHandler
         
-        Print("Loaded. Type /vmg help for commands.")
+        Print("Loaded. Use /vmg [1-4] to mark a specific group or /vmg all to mark all groups.")
+        FindAndMarkActiveMirrorGroup()
         
-        frame:UnregisterEvent("ADDON_LOADED")        
+        frame:UnregisterEvent("ADDON_LOADED")
+    elseif event == "ZONE_CHANGED" then
+        OnZoneChange()
     end
 end
 
 -- Register events
+frame:RegisterEvent("ZONE_CHANGED")
 frame:RegisterEvent("ADDON_LOADED")
 frame:SetScript("OnEvent", OnEvent)
