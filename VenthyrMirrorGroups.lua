@@ -104,12 +104,12 @@ local function OnEvent(self, event, arg1)
         FindAndMarkActiveMirrorGroup()
         
         frame:UnregisterEvent("ADDON_LOADED")
-    elseif event == "ZONE_CHANGED" then
+    elseif event == "ZONE_CHANGED_NEW_AREA" then
         OnZoneChange()
     end
 end
 
 -- Register events
-frame:RegisterEvent("ZONE_CHANGED")
+frame:RegisterEvent("ZONE_CHANGED_NEW_AREA")
 frame:RegisterEvent("ADDON_LOADED")
 frame:SetScript("OnEvent", OnEvent)
