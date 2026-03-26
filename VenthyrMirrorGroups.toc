@@ -1,7 +1,7 @@
 ## Interface: 120001
 ## Title: Venthyr Mirror Groups
 ## Author: Hariel
-## Version: 1.2.5
+## Version: 1.3.0
 ## License: All Rights Reserved
 ## Notes: Mark the Venthyr mirrors on your map using TomTom. Requires the TomTom add on.
 ## SavedVariables: VenthyrMirrorGroups_DB
