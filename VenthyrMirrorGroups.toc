@@ -4,6 +4,7 @@
 ## Version: 1.2.5
 ## License: All Rights Reserved
 ## Notes: Mark the Venthyr mirrors on your map using TomTom. Requires the TomTom add on.
+## SavedVariables: VenthyrMirrorGroups_DB
 ## X-Curse-Project-ID: 1476084
 ## X-WoWI-ID: 27068
 ## X-Wago-ID: 56ndwAG9
